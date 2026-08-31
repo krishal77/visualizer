@@ -4,15 +4,15 @@ An interactive, educational web application for exploring and comparing **Cartes
 
 ## Features
 
-- 🎯 **Interactive 3D Point** — move it with XYZ sliders or direct numeric input
-- 🔄 **Real-time Conversions** — all three coordinate systems update simultaneously
-- 📐 **4 View Modes** — Cartesian, Cylindrical, Spherical, Compare All
-- ▶️ **Play Animation** — step-by-step coordinate construction animation
-- 🎓 **Educational Explanations** — toggle explanations for every coordinate
-- 🌗 **Dark/Light Mode** — toggle with a switch
-- ⚙️ **Display Settings** — toggle grid, projections, angle arcs, labels, planes
-- 📍 **10 Presets** — Origin, axes, planes, examples, and random points
-- 🔢 **Direct Coordinate Input** — enter cylindrical or spherical values directly
+- **Interactive 3D Point** — move it with XYZ sliders or direct numeric input
+- **Real-time Conversions** — all three coordinate systems update simultaneously
+- **4 View Modes** — Cartesian, Cylindrical, Spherical, Compare All
+- **Play Animation** — step-by-step coordinate construction animation
+-  **Educational Explanations** — toggle explanations for every coordinate
+-  **Dark/Light Mode** — toggle with a switch
+-  **Display Settings** — toggle grid, projections, angle arcs, labels, planes
+- **10 Presets** — Origin, axes, planes, examples, and random points
+-  **Direct Coordinate Input** — enter cylindrical or spherical values directly
 
 ## Mathematical Conventions
 
