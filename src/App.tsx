@@ -20,7 +20,10 @@ import { CoordinateDisplay } from './components/CoordinateDisplay';
 import { FormulaPanel } from './components/FormulaPanel';
 import { SettingsPanel } from './components/SettingsPanel';
 import { SurfaceRangeControls } from './components/SurfaceRangeControls';
+import { EMLabPage } from './em-lab/EMLabPage';
 import { clsx } from 'clsx';
+
+type ActiveModule = 'coordinates' | 'emlab';
 
 // ─── Defaults ─────────────────────────────────────────────────────────────────
 
@@ -56,6 +59,7 @@ const DEFAULT_SPHERICAL_RANGES: SphericalRanges = {
 // ─── App ─────────────────────────────────────────────────────────────────────
 
 export default function App() {
+  const [activeModule, setActiveModule] = useState<ActiveModule>('coordinates');
   const [position, setPosition] = useState<CartesianCoords>(DEFAULT_POSITION);
   const [mode, setMode] = useState<AppMode>('cartesian');
   const [settings, setSettings] = useState<AppSettings>(DEFAULT_SETTINGS);
@@ -125,12 +129,32 @@ export default function App() {
           : 'bg-white border-gray-200 shadow-sm'
       )}>
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-accent-primary to-coord-rho flex items-center justify-center text-white font-bold text-sm shadow-glow">
-            3D
-          </div>
-          <div>
-            <h1 className="text-sm font-bold text-white">3D Coordinate Systems</h1>
-            <p className="text-xs text-surface-500">Interactive Visualizer</p>
+          {/* Module switcher */}
+          <div className="flex items-center gap-1 bg-surface-700/50 p-1 rounded-xl border border-surface-600/30">
+            <button
+              id="module-coordinates"
+              onClick={() => setActiveModule('coordinates')}
+              className={clsx(
+                'px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 flex items-center gap-1.5',
+                activeModule === 'coordinates'
+                  ? 'bg-accent-glow/30 text-white border border-accent-primary/40'
+                  : 'text-surface-500 hover:text-white'
+              )}
+            >
+              <span className="text-[10px]">🔷</span> Coordinates
+            </button>
+            <button
+              id="module-emlab"
+              onClick={() => setActiveModule('emlab')}
+              className={clsx(
+                'px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 flex items-center gap-1.5',
+                activeModule === 'emlab'
+                  ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/40'
+                  : 'text-surface-500 hover:text-white'
+              )}
+            >
+              <span className="text-[10px]">⚡</span> EM Lab
+            </button>
           </div>
         </div>
 
@@ -185,7 +209,12 @@ export default function App() {
 
       {/* ── Main ───────────────────────────────────────────────────────────── */}
       <div className="flex-1 flex overflow-hidden">
+        {/* EM Lab module */}
+        {activeModule === 'emlab' && <EMLabPage />}
 
+        {/* ── Coordinate Systems module ─────────────────────────────────── */}
+        {activeModule === 'coordinates' && (
+          <>
         {/* ── Left Panel ─────────────────────────────────────────────────── */}
         <aside className={clsx(
           'w-72 flex-shrink-0 flex flex-col border-r overflow-y-auto',
@@ -273,6 +302,8 @@ export default function App() {
             )}
           </div>
         </aside>
+          </>
+        )}
       </div>
     </div>
   );
